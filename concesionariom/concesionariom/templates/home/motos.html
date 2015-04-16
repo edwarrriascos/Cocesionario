@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Lista de Motos
+{% endblock %}
+
+{% block content %}
+	<h1>Lista de Motos</h1>
+	<br>
+	{% if user.is_authenticated %}
+
+		<a class="btn btn-primary" href="{% url 'vista_agregar_motos' %}"> <li class="icon-plus"></li>agregar un nuevo moto</a>
+
+	{% endif %}
+	{% if motos %}
+	<table class = "table table-hover">
+		<theader>
+			<tr>
+				<th>Nombre</th>
+				<th>Precio</th>
+				<th>Categoria</th>
+			</tr>
+		</theader>
+		{% for p in motos %}
+			<tbody>
+				<tr>
+					<td>{{ p.nombre }}</td>
+					<td>{{ p.precio }}</td>
+					<td>{{ p.categoria }}</td>
+					<td><a class="btn" href="/motos/{{ p.id }}"> Ver </a></td>
+					
+					<td><a class="btn" href="#"><li class = "icon-shopping-cart"></li> Comprar </a></td>
+					<td>
+						{% if user.is_authenticated %}
+							<a class="btn" href="/edit/motos/{{ p.id }}"><li class = "icon-pencil"></li> Editar</a>
+						{% endif %}	
+
+					</td>
+				</tr>
+			</tbody>
+		{% endfor %}	
+	</table>
+
+	{% else %}
+		<h2>No existen motos activos a la venta :( </h2>
+	{% endif %}
+
+	{% if motos %}	
+	<div class="pagination">
+		<div class = "pagination pagination-centered">
+			<ul>
+				<li><a href="/motos/page/1"> << </a></li>
+				{% if motos.has_previous %}
+				<li><a href="/motos/page/{{ motos.previous_page_number }}"> Anterior </a></li>
+
+				{% else %}
+					<li><a href="#"> Anterior </a></li>
+				{% endif %}	
+
+				{% if motos.has_next %}
+					<li><a href="/motos/page/{{ motos.next_page_number }}"> Siguiente </a></li>
+				{% else %}
+					<li><a href="#"> Siguiente </a></li>
+				{% endif %}
+					<li><a href="/motos/page/{{ motos.paginador.num_pages }}">>></a>
+			</ul>
+		</div>
+	</div>
+			<br>
+			<h4>pagina {{  motos.number }} de {{ motos.paginator.num_pages }}</h4>
+	{% endif %}
+{% endblock %}
+
+
+	
+ 
+	
+	

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Moto
+{% endblock %}
+
+{% block content %}
+	<h1>{{ moto.nombre }}</h1>
+	{% if moto.imagen %}
+		<img src="/media/{{ moto.imagen }}" width = "80px" heigth ="80px">
+	{% endif %}	
+	<br>
+	<p><b>Descripcion:</b> {{ moto.descripcion }}</p>
+	<p><b>Precio:</b> $ {{ moto.precio }}</p>
+	<p><b>Stock:</b> {{ moto.stock }} unidades</p>
+	{% for c in categorias %}
+		<span class="label label-info">{{ c.nombre }}</span>
+	{% endfor %}
+	
+	<br>
+	<a href="/motos/page/1">Mostrar la lista de Motos</a>
+{% endblock %}
+
+	
