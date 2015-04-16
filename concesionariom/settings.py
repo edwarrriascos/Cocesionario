@@ -138,7 +138,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'concesionariom.apps.ventas',
     'concesionariom.apps.webservices.ws_productos',
-#    'rest_framework',
+    'rest_framework',
     'gunicorn',
 )
 
