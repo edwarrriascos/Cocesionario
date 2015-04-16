@@ -17,7 +17,7 @@ def add_motos_view(request):
 			m.save()
 			formulario.save_m2m()
 			info = "Guardado Satisfactoriamente"
-			return HttpResponseRedirect('/moto/%s' %m.id)
+			return HttpResponseRedirect('/motos/%s' %m.id)
 	else:
 		formulario = add_moto_form()
 	ctx = {'form': formulario, 'info': info}
